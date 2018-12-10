@@ -12,13 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.administrator.gongchensheji3.weixingzuo.fragmentpagerwei.FragmentPagerWei;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private LinearLayout wei;
     private LinearLayout tang;
     private LinearLayout bottom;
-    private Fragment1 weiFragment;
+    private FragmentPagerWei fragmentWei;
     private Fragment2 tangFragment;
 
     @Override
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (savedInstanceState == null) {
             showWei();
         }else {
-            weiFragment = (Fragment1) getSupportFragmentManager().findFragmentByTag("weiFragment");
+            fragmentWei = (FragmentPagerWei) getSupportFragmentManager().findFragmentByTag("fragmentWei");
             tangFragment = (Fragment2) getSupportFragmentManager().findFragmentByTag("tangFragment");
         }
     }
@@ -82,12 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void showWei() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        if (weiFragment == null) {
-            weiFragment = new Fragment1();
-            ft.add(R.id.fl, weiFragment,"weiFragment");
+        if (fragmentWei == null) {
+            fragmentWei = new FragmentPagerWei();
+            ft.add(R.id.fl, fragmentWei,"weiFragment");
         }
         hideFrag(ft);
-        ft.show(weiFragment);
+        ft.show(fragmentWei);
         ft.commit();
     }
 
@@ -103,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void hideFrag(FragmentTransaction ft) {
-        if (weiFragment != null) {
-            ft.hide(weiFragment);
+        if (fragmentWei != null) {
+            ft.hide(fragmentWei);
         }
         if (tangFragment != null) {
             ft.hide(tangFragment);
